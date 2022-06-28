@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AdoptionsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+// Route::get('/solicitarAdopcion',function(){
+//     return view('adoptions.form');
+// });
+Route::resource('solicitarAdopcion', AdoptionsController::class);('')
+
+?>

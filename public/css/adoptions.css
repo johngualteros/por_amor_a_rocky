@@ -1,0 +1,231 @@
+/* Estilos para el formulario */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+:root {
+    --primary-color: rgb(91, 217, 255);
+    --secondary-color: #222;
+    --tertiary-color: #fff;
+    --fourd-color: rgba(91, 216, 255, 0.4);
+    --color-input: #676767;
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: "Open Sans", sans-serif;
+    background-color: var(--primary-color);
+    overflow: overlay;
+}
+::-webkit-scrollbar {
+    width: 8px;
+    background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background-color: var(--tertiary-color);
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: transparent;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+.container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    overflow: hidden;
+    padding: 2% 0px;
+}
+.container .container-form-register {
+    width: 90vw;
+    height: auto;
+    background-color: var(--tertiary-color);
+    position: relative;
+    border-radius: 50px;
+    box-shadow: 0px 0px 7px rgb(189, 189, 189);
+}
+.header-container-form {
+    background-color: transparent;
+    width: inherit;
+    display: grid;
+    grid-template-columns: 10% auto 10%;
+    height: 84px;
+    padding: 10px 0px;
+    font-size: 24px;
+    font-weight: bold;
+}
+.header-container-form .logo,
+.title {
+    display: grid;
+    place-items: center;
+}
+.header-container-form .title h1 {
+    font-size: 36px;
+}
+.header-container-form .img-container-form {
+    width: 72px;
+}
+/* Efecto boton */
+.button {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 30px 0px;
+}
+.ov-btn-slide-right {
+    background: var(--tertiary-color); /* color de fondo */
+    color: var(--secondary-color); /* color de fuente */
+    border: 2px solid var(--fourd-color); /* tamaño y color de borde */
+    padding: 12px 20px;
+    border-radius: 10px; /* redondear bordes */
+    position: relative;
+    z-index: 4;
+    overflow: hidden;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 400px;
+}
+.ov-btn-slide-right::after {
+    content: "";
+    background: var(--fourd-color); /* color de fondo hover */
+    position: absolute;
+    z-index: -1;
+    padding: 16px 20px;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 100%;
+    right: -100%;
+    -webkit-transition: all 0.35s;
+    transition: all 0.35s;
+}
+.ov-btn-slide-right:hover::after {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    -webkit-transition: all 0.35s;
+    transition: all 0.35s;
+}
+.form-container {
+    width: 100%;
+}
+/* Primera fila formulario */
+.form-container .container-form-input {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-column-gap: 60px;
+    width: 80%;
+    margin: 30px auto;
+}
+.container-form-input .input-container label {
+    font-size: 24px;
+    font-weight: bold;
+}
+.container-form-input .input-container input,
+select {
+    margin-top: 5px;
+    width: 100%;
+    border: 2px solid var(--primary-color);
+    padding: 7px 20px;
+    font-size: 20px;
+    outline: none;
+    border-radius: 5px;
+    color: var(--color-input);
+    box-shadow: 2px 2px 2px 2px #eee;
+}
+/* Segunda fila formulario */
+.form-container .container-form-input-2 {
+    display: grid;
+    grid-template-columns: 30% auto auto;
+    grid-column-gap: 60px;
+    grid-row-gap: 30px;
+    width: 80%;
+    margin: 30px auto;
+}
+.container-form-input-2 .input-container label {
+    font-size: 24px;
+    font-weight: bold;
+}
+.container-form-input-2 .input-container input {
+    margin-top: 5px;
+    width: 100%;
+    border: 2px solid var(--primary-color);
+    padding: 7px 20px;
+    font-size: 20px;
+    outline: none;
+    border-radius: 5px;
+    color: var(--color-input);
+    box-shadow: 2px 2px 2px 2px #eee;
+}
+.text-red {
+    color: red;
+    font-weight: bold;
+}
+/* Media Queries */
+@media (max-width: 1200px) {
+    .container {
+        height: auto;
+    }
+    .container .container-form-register {
+        height: auto;
+    }
+    .container-form-register .header-container-form {
+        grid-template-columns: 25% auto 25%;
+    }
+    .container-form-register .header-container-form .title h1 {
+        font-size: 24px;
+    }
+    .form-container .container-form-input-2 {
+        grid-template-columns: 47% auto;
+        grid-column-gap: 50px;
+    }
+}
+@media (max-width: 992px) {
+    /* No es Necesario */
+}
+@media (max-width: 700px) {
+    .container .container-form-register {
+        border-radius: 10px;
+    }
+    .header-container-form {
+        grid-template-columns: 1% auto;
+    }
+    .header-container-form .logo {
+        opacity: 0;
+    }
+    .container-form-register .header-container-form .title h1 {
+        font-size: 24px;
+        text-align: center;
+    }
+    .form-container .container-form-input-2 {
+        grid-template-columns: auto;
+        grid-column-gap: 0px;
+        margin: 10px auto;
+    }
+    .form-container .container-form-input {
+        grid-template-columns: auto;
+        grid-column-gap: 0px;
+    }
+    .mt {
+        margin-top: 10px;
+    }
+}
+@media (max-width: 576px) {
+    .ov-btn-slide-right {
+        width: 200px;
+    }
+}
