@@ -8,8 +8,7 @@ function alertConfirm() {
         timer: 1500,
     }).then((response) => {
         try {
-            window.location.href =
-                "https://es.wikipedia.org/wiki/Felis_silvestris_catus";
+            window.location.href = "http://localhost:8000/adoptions";
         } catch (e) {
             console.log(e);
         }

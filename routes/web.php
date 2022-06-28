@@ -16,9 +16,6 @@ use App\Http\Controllers\AdoptionsController;
 Route::get('/', function () {
     return view('welcome');
 });
-// Route::get('/solicitarAdopcion',function(){
-//     return view('adoptions.form');
-// });
-Route::resource('solicitarAdopcion', AdoptionsController::class);('')
 
+Route::resource('solicitarAdopcion', AdoptionsController::class);
 ?>

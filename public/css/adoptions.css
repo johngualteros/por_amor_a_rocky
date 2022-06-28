@@ -229,3 +229,10 @@ select {
         width: 200px;
     }
 }
+/* mensajes de validacion */
+.validation-message {
+    color: red;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 5px;
+}

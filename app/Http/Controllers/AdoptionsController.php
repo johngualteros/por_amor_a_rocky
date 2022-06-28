@@ -41,21 +41,30 @@ class AdoptionsController extends Controller
     public function store(Request $request)
     {
         $rules=[
-            "nombre"=>'required|alpha|unique:productos,nombre',
-            "descripcion"=>'required|min:10|max:100',
-            "precio"=>'required|numeric',
-            "imagen"=>'required|image',
-            "marca"=>'required',
-            "categoria"=>'required',
+            "documento"=>'required|mimes:pdf|max:1000',
+            "numeroDocumento"=>'required|numeric|min:11|max:12',
+            "nombre"=>'required|alpha|max:45|min:3',
+            "apellidos"=>'required|alpha|max:45',
+            "fechaNacimiento"=>'required|date',
+            "numeroPersonasReside"=>'required|numeric',
+            "contactoEmpresa"=>'required|email|max:45',
+            "celularEmpresa"=>'required|numeric',
+            "correo"=>'required|email',
+            "direccion"=>'required|max:45',
+            "empresaTrabaja"=>'required|alpha|max:45',
+            "sueldo"=>'required',
+            "zonaVivienda"=>'required|numeric|min:1|max:20',
         ];
         // 2 objeto validador
         $v=Validator::make($request->all(),$rules,$message=[
             'required' => 'el campo :attribute es requerido',
-            'min' => 'El campo debe tener un minimo de :min caracteres',
-            'max' => 'El campo debe tener un maximo de :max caracteres',
-            'numeric' => 'El campo solo debe tener numeros',
-            'image' => 'El campo debe tener una imagen',
-            'unique' =>'El campo ya tiene un registro en la base de datos'
+            'numeric' => 'el campo :attribute debe ser numerico',
+            'alpha' => 'el campo :attribute debe ser alfabetico',
+            'min' => 'el campo :attribute debe tener minimo :min caracteres',
+            'max' => 'el campo :attribute debe tener maximo :max caracteres',
+            'email' => 'el campo :attribute debe ser un correo valido',
+            'date' => 'el campo :attribute debe ser una fecha valida',
+            'mimes' => 'el campo :attribute debe ser un archivo pdf',
         ]);
         // 3 Validar
         // fails return si la validacion falla y un false si no
@@ -63,15 +72,21 @@ class AdoptionsController extends Controller
             // Mostrar la vista new pero llevando los errores
             return redirect('solicitarAdopcion/create')->withErrors($v);
         }else{
-            $archivo=$request->imagen;
-            $nombre_archivo=$archivo->getClientOriginalName();
-            // Mover el arvhivo a la carpeta public
-            $ruta=public_path();
-            var_dump($ruta);
-            $archivo->move("$ruta/img/",$nombre_archivo);
             // Registrar producto
             $adoption=new Adoption();
-            
+            $adoption->documento=$request->documento;
+            $adoption->numeroDocumento=$request->numeroDocumento;
+            $adoption->nombre=$request->nombre;
+            $adoption->apellidos=$request->apellidos;
+            $adoption->fechaNacimiento=$request->fechaNacimiento;
+            $adoption->numeroPersonasReside=$request->numeroPersonasReside;
+            $adoption->contactoEmpresa=$request->contactoEmpresa;
+            $adoption->celular=$request->celular;
+            $adoption->correo=$request->correo;
+            $adoption->direccion=$request->direccion;
+            $adoption->empresaTrabaja=$request->empresaTrabaja;
+            $adoption->sueldo=$request->sueldo;
+            $adoption->zonaVivienda=$request->zonaVivienda;
             $adoption->save();
             return redirect('/solicitarAdopcion');
         }
