@@ -50,12 +50,13 @@
                 </div>
                 <hr><br>
                 <div class="container-form">
-                    <form action="" class="form">
+                    <form action="{{ route('login') }}" method="POST" class="form">
+                         @csrf
                         <label for="">Correo</label><br>
-                        <input type="email" name="" id="">
+                        <input type="email" name="email" id="">
                         <label for="">Contraseña</label><br>
-                        <input type="password" name="" id="">
-                        <button class="button-form">
+                        <input type="password" name="password" id="">
+                        <button class="button-form" type="submit" >
                             Iniciar Sesión
                         </button>
                     </form>

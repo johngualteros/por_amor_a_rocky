@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdoptionsController;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +18,10 @@ use App\Http\Controllers\AdoptionsController;
 Route::get('/', function () {
     return view('welcome');
 });
+// Usuarios
+Route::resource('usuario', UserController::class);
+Route::post('login',[UserController::class,'login'])->name('login');
+// Adopción
 // Route::get('/solicitarAdopcion',function(){
 //     return view('adoptions.form');
 // });
