@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdoptionsController;
+use App\Http\Controllers\QuotesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,4 +19,5 @@ Route::get('/', function () {
 });
 
 Route::resource('solicitarAdopcion', AdoptionsController::class);
+Route::resource('solicitarCita', QuotesController::class);
 ?>
