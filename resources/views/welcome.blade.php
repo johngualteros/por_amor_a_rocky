@@ -52,10 +52,13 @@
                 <div class="container-form">
                     <form action="{{ route('login') }}" method="POST" class="form">
                          @csrf
+                         @error('message')
+                             <p>ERROR</p>
+                         @enderror
                         <label for="">Correo</label><br>
-                        <input type="email" name="email" id="">
+                        <input type="email" name="correo" id="">
                         <label for="">Contraseña</label><br>
-                        <input type="password" name="password" id="">
+                        <input type="password" name="clave" id="">
                         <button class="button-form" type="submit" >
                             Iniciar Sesión
                         </button>

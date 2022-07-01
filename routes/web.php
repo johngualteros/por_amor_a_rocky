@@ -25,6 +25,9 @@ Route::post('login',[UserController::class,'login'])->name('login');
 // Route::get('/solicitarAdopcion',function(){
 //     return view('adoptions.form');
 // });
+Route::get('formulario', function () {
+    return view('users.formRegister');
+});
 Route::resource('solicitarAdopcion', AdoptionsController::class);('')
 
 ?>
