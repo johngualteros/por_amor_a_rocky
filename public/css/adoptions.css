@@ -126,8 +126,7 @@ body {
 /* Primera fila formulario */
 .form-container .container-form-input {
     display: grid;
-    grid-template-columns: auto auto;
-    grid-column-gap: 60px;
+    grid-template-columns: auto;
     width: 80%;
     margin: 30px auto;
 }
@@ -228,6 +227,10 @@ select {
     .ov-btn-slide-right {
         width: 200px;
     }
+}
+/* Poner inputs en minuscula */
+input {
+    text-transform: lowercase;
 }
 /* mensajes de validacion */
 .validation-message {

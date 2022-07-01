@@ -20,11 +20,26 @@
             <form action="{{ route('solicitarAdopcion.store') }}" method="POST" class="form-container"
                 enctype="multipart/form-data">
                 @csrf
-                <!-- Contenedor Segunda Fila -->
-                <div class="container-form-input-2">
-                    <!-- Segunda fila -->
+                <!-- Contenedor de los campos del formulario -->
+                <div class="container-form-input">
                     <div class="input-container">
-                        <label for="nombre">Nombres <span class="text-red">*</span></label><br>
+                        <label for="documento">Documento <span class="text-red">*</span></label><br>
+                        <input type="file" name="documento" id="documento">
+                        <div class="validation-message">
+                            {{ $errors->first('documento') }}
+                        </div>
+                    </div>
+                </div>
+                <div class="container-form-input-2">
+                    <div class="input-container">
+                        <label for="numeroDocumento">Número Documento <span class="text-red">*</span></label><br>
+                        <input type="number" name="numeroDocumento" id="numeroDocumento">
+                        <div class="validation-message">
+                            {{ $errors->first('numeroDocumento') }}
+                        </div>
+                    </div>
+                    <div class="input-container">
+                        <label for="nombre">Nombre <span class="text-red">*</span></label><br>
                         <input type="text" name="nombre" id="nombre">
                         <div class="validation-message">
                             {{ $errors->first('nombre') }}
@@ -44,18 +59,19 @@
                             {{ $errors->first('fechaNacimiento') }}
                         </div>
                     </div>
+
                     <div class="input-container">
-                        <label for="documento">Documento <span class="text-red">*</span></label><br>
-                        <input type="file" name="documento" id="documento">
+                        <label for="numeroPersonasReside">N° Personas Reside <span class="text-red">*</span></label><br>
+                        <input type="number" name="numeroPersonasReside" id="numeroPersonasReside">
                         <div class="validation-message">
-                            {{ $errors->first('documento') }}
+                            {{ $errors->first('numeroPersonasReside') }}
                         </div>
                     </div>
                     <div class="input-container">
-                        <label for="numeroDocumento">Número Documento <span class="text-red">*</span></label><br>
-                        <input type="text" name="numeroDocumento" id="numeroDocumento">
+                        <label for="contactoEmpresa">Contacto Empresa <span class="text-red">*</span></label><br>
+                        <input type="text" name="contactoEmpresa" id="contactoEmpresa">
                         <div class="validation-message">
-                            {{ $errors->first('numeroDocumento') }}
+                            {{ $errors->first('contactoEmpresa') }}
                         </div>
                     </div>
                     <div class="input-container">
@@ -65,14 +81,7 @@
                             {{ $errors->first('celular') }}
                         </div>
                     </div>
-                    <!-- Tercera fila -->
-                    <div class="input-container">
-                        <label for="numeroPersonasReside">N° núcleo familiar <span class="text-red">*</span></label><br>
-                        <input type="text" name="numeroPersonasReside" id="numeroPersonasReside">
-                        <div class="validation-message">
-                            {{ $errors->first('numeroPersonasReside') }}
-                        </div>
-                    </div>
+
                     <div class="input-container">
                         <label for="correo">Correo <span class="text-red">*</span></label><br>
                         <input type="email" name="correo" id="correo">
@@ -85,6 +94,13 @@
                         <input type="text" name="direccion" id="direccion">
                         <div class="validation-message">
                             {{ $errors->first('direccion') }}
+                        </div>
+                    </div>
+                    <div class="input-container">
+                        <label for="empresaTrabaja">Empresa<span class="text-red">*</span></label><br>
+                        <input type="text" name="empresaTrabaja" id="empresaTrabaja">
+                        <div class="validation-message">
+                            {{ $errors->first('empresaTrabaja') }}
                         </div>
                     </div>
                     <!-- Cuarta fila -->
@@ -100,46 +116,21 @@
                         </div>
                     </div>
                     <div class="input-container">
-                        <label for="peludito">Peludito a adoptar <span class="text-red">*</span></label><br>
-                        <input type="text" name="peludito" id="peludito">
-                        <div class="validation-message">
-                            {{ $errors->first('peludito') }}
-                        </div>
-                    </div>
-                    <div class="input-container">
                         <label for="zonaVivienda">Zona Vivienda <span class="text-red">*</span></label><br>
-                        <input type="number" name="zonaVivienda" id="zonaVivienda">
+                        <select type="number" name="zonaVivienda" id="zonaVivienda">
+                            @foreach ($optionsZone as $optionZone)
+                                <option value="{{ $optionZone }}">{{ $optionZone }}</option>
+                            @endforeach
+                        </select>
                         <div class="validation-message">
                             {{ $errors->first('zonaVivienda') }}
-                        </div>
-                    </div>
-                    <!-- Quinta fila -->
-                    <div class="input-container">
-                        <label for="empresa">Empresa <span class="text-red">*</span></label><br>
-                        <input type="text" name="empresa" id="empresa">
-                        <div class="validation-message">
-                            {{ $errors->first('empresa') }}
-                        </div>
-                    </div>
-                    <div class="input-container">
-                        <label for="contactoEmpresa">Contacto Empresa <span class="text-red">*</span></label><br>
-                        <input type="email" name="contactoEmpresa" id="contactoEmpresa">
-                        <div class="validation-message">
-                            {{ $errors->first('contactoEmpresa') }}
-                        </div>
-                    </div>
-                    <div class="input-container">
-                        <label for="celularEmpresa">Celular Empresa <span class="text-red">*</span></label><br>
-                        <input type="text" name="celularEmpresa" id="celularEmpresa">
-                        <div class="validation-message">
-                            {{ $errors->first('celularEmpresa') }}
                         </div>
                     </div>
                 </div>
 
                 <!-- Contenedor boton -->
                 <div class="button">
-                    <a href="#">
+                    <a onclick="alertConfirm()">
                         <button type="submit" class="ov-btn-slide-right">
                             Enviar
                         </button>
