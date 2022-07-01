@@ -16,7 +16,8 @@ class AdoptionsController extends Controller
     public function index()
     {
         //
-        return view('adoptions.success');
+        $adoptions = Adoption::all();
+        return view('adoptions.listAdoptions')->with('adoptions', $adoptions);
     }
 
     /**
