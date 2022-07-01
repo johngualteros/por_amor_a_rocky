@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="sweetalert2.min.css">
 </head>
 
-<body>
+<body class="body">
     @yield('content')
 
     <script src="{{ asset('js/adoptions.js') }}" type="text/javascript"></script>

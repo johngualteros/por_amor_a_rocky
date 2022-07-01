@@ -5,11 +5,10 @@ function alertConfirm() {
         icon: "success",
         title: "Se ha registrado tu solicitud correctamente",
         showConfirmButton: false,
-        timer: 1500,
+        timer: 2000,
     }).then((response) => {
         try {
-            window.location.href =
-                "https://es.wikipedia.org/wiki/Felis_silvestris_catus";
+            window.location.href = "/adoptions";
         } catch (e) {
             console.log(e);
         }
