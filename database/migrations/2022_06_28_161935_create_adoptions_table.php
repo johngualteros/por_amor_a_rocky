@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('adoptions', function (Blueprint $table) {
             //
-            $table->id('idAdoptante');
+            $table->id();
             $table->text('documento',45);
             $table->string('numeroDocumento',45);
             $table->string('nombre',45);
@@ -23,14 +23,13 @@ return new class extends Migration
             $table->date('fechaNacimiento');
             $table->integer('numeroPersonasReside');
             $table->string('contactoEmpresa',45);
-            $table->string('celularEmpresa',45);
             $table->string('celular',45);
             $table->string('correo',45);
-            $table->string('peludito',45);
             $table->string('direccion',45);
             $table->string('empresaTrabaja',45);
             $table->string('sueldo',45);
             $table->string('zonaVivienda',45);
+            $table->timestamps();
         });
     }
 

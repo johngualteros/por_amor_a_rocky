@@ -29,7 +29,8 @@ class AdoptionsController extends Controller
         // Nos falta el nombre del perro
         //$mascota=Mascota::all();
         //return view('adoptions.form')->with('mascota', $mascota);
-        return view('adoptions.form');
+        $optionsZone=[1,2,3,4,5,6,7,8,9,10,11];
+        return view('adoptions.form')->with('optionsZone', $optionsZone);
     }
 
     /**
@@ -39,27 +40,27 @@ class AdoptionsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
         $rules=[
             "documento"=>'required|mimes:pdf|max:1000',
-            "numeroDocumento"=>'required|numeric|min:11|max:12',
-            "nombre"=>'required|alpha|max:45|min:3',
-            "apellidos"=>'required|alpha|max:45',
+            "numeroDocumento"=>'required|alpha_num',
+            "nombre"=>'required|string|max:45|min:3',
+            "apellidos"=>'required|string|max:45',
             "fechaNacimiento"=>'required|date',
-            "numeroPersonasReside"=>'required|numeric',
-            "contactoEmpresa"=>'required|email|max:45',
-            "celularEmpresa"=>'required|numeric',
+            "numeroPersonasReside"=>'required|alpha_num',
+            "contactoEmpresa"=>'required|alpha_num',
+            "celular"=>'required|alpha_num',
             "correo"=>'required|email',
             "direccion"=>'required|max:45',
-            "empresaTrabaja"=>'required|alpha|max:45',
+            "empresaTrabaja"=>'required|string',
             "sueldo"=>'required',
             "zonaVivienda"=>'required|numeric|min:1|max:20',
         ];
         // 2 objeto validador
         $v=Validator::make($request->all(),$rules,$message=[
             'required' => 'el campo :attribute es requerido',
-            'numeric' => 'el campo :attribute debe ser numerico',
-            'alpha' => 'el campo :attribute debe ser alfabetico',
+            'alpha_num' => 'el campo :attribute debe ser numerico',
+            'string' => 'el campo :attribute debe ser alfabetico',
             'min' => 'el campo :attribute debe tener minimo :min caracteres',
             'max' => 'el campo :attribute debe tener maximo :max caracteres',
             'email' => 'el campo :attribute debe ser un correo valido',
@@ -72,9 +73,14 @@ class AdoptionsController extends Controller
             // Mostrar la vista new pero llevando los errores
             return redirect('solicitarAdopcion/create')->withErrors($v);
         }else{
+            $archivo=$request->documento;
+            $nombre_archivo=$archivo->getClientOriginalName();
+            // Mover el archivo a la carpeta public/images
+            $ruta=public_path();
+            $archivo->move("$ruta/images/",$nombre_archivo);
             // Registrar producto
             $adoption=new Adoption();
-            $adoption->documento=$request->documento;
+            $adoption->documento=$nombre_archivo;
             $adoption->numeroDocumento=$request->numeroDocumento;
             $adoption->nombre=$request->nombre;
             $adoption->apellidos=$request->apellidos;
