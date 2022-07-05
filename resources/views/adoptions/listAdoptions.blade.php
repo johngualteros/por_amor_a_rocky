@@ -17,19 +17,22 @@
         <div class="content-list-adoptions">
             <div class="container-requests-adoption">
                 @foreach ($adoptions as $adoption )
+                
                     <div class="container-adoption">
-                        <section>
+                        <section class="container-section-adoption">
                             <h1>Nombre perro</h1>
                             <h3>{{$adoption->nombre}}</h3>
                             <p>{{$adoption->celular}}</p>
                         </section>
                         <section>
-                            <button class="approve-button">Aprobar</button>
-                            <button class="decline-button">Rechazar</button>
+                            <a onclick="aprobeAlert()"><button class="approve-button">Aprobar</button></a>
+                            <a onclick="declineAlert()"><button class="decline-button">Rechazar</button></a>
+                            <a href="{{route('solicitarAdopcion.show',  $adoption->id)}}"><button class="view-button">Ver</button></a>
                         </section>
                     </div>
                 @endforeach
             </div>
         </div>
     </div>
+
 @endsection

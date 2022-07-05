@@ -108,6 +108,8 @@ class AdoptionsController extends Controller
     public function show($id)
     {
         //
+        $adoption=Adoption::find($id);
+        return view('adoptions.show')->with('adoption', $adoption);
     }
 
     /**

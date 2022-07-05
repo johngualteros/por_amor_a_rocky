@@ -29,7 +29,5 @@ Route::get('formulario', function () {
     return view('users.formRegister');
 });
 Route::resource('solicitarAdopcion', AdoptionsController::class);
-
-Route::resource('solicitarAdopcion', AdoptionsController::class);
 Route::resource('solicitarCita', QuotesController::class);
 ?>

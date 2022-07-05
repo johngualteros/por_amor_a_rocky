@@ -1,13 +1,5 @@
-<<<<<<< HEAD
-@import './adoptions.css';
-@import './pets.css';
-@import './users.css';
-@import './vacinnes.css';
-@import './home.css';
-=======
 @import "./adoptions.css";
 @import "./pets.css";
 @import "./users.css";
 @import "./vacinnes.css";
-@import "./quote.css";
->>>>>>> 6410992ab6b2477487a22e4a5e93ad4e3c5e79ed
+@import "./home.css";
