@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdoptionsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\QuotesController;
+use App\Models\Adoption;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +32,5 @@ Route::get('formulario', function () {
 });
 Route::resource('solicitarAdopcion', AdoptionsController::class);
 Route::resource('solicitarCita', QuotesController::class);
+
 ?>

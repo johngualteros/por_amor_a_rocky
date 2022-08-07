@@ -15,24 +15,38 @@
         </div>
         {{-- Contenedor Contenido --}}
         <div class="content-list-adoptions">
-            <div class="container-requests-adoption">
-                @foreach ($adoptions as $adoption )
-                
-                    <div class="container-adoption">
-                        <section class="container-section-adoption">
-                            <h1>Nombre perro</h1>
-                            <h3>{{$adoption->nombre}}</h3>
-                            <p>{{$adoption->celular}}</p>
-                        </section>
-                        <section>
-                            <a onclick="aprobeAlert()"><button class="approve-button">Aprobar</button></a>
-                            <a onclick="declineAlert()"><button class="decline-button">Rechazar</button></a>
-                            <a href="{{route('solicitarAdopcion.show',  $adoption->id)}}"><button class="view-button">Ver</button></a>
-                        </section>
-                    </div>
-                @endforeach
-            </div>
+            <table class="container-requests-adoption" id="datat">
+                <thead class="header-table-list-adoptions">
+                    <tr>
+                        <th>Nombre Peludito</th>
+                        <th>Nombre</th>
+                        <th>Celular</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="container-adoption">
+                    @foreach ($adoptions as $adoption)
+                        <tr class="container-section-adoption">
+                            <td>Nombre perro</td>
+                            <td>{{ $adoption->nombre }}</td>
+                            <td>{{ $adoption->celular }}</td>
+                            <td>
+                                @if ($adoption->estado == 'pendiente')
+                                        <a onclick="aprobeAlert(`{{$adoption->id}}`)" role="button"><button class="approve-button">Aprobar</button></a>
+                                        <a onclick="declineAlert()" href="{{ route('solicitarAdopcion.edit',['rechazar',$adoption->id])}}" role="button"><button class="decline-button">Rechazar</button></a>
+                                    @elseif ($adoption->estado == 'aprobado')
+                                        <button class="approve-button">Aprobado</button>
+                                    @elseif ($adoption->estado == 'rechazado')
+                                        <button class="decline-button">Rechazado</button>
+                                @endif
+                                <a href="{{ route('solicitarAdopcion.show', $adoption->id) }}"><button
+                                        class="view-button">Ver</button></a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
-
+    6
 @endsection

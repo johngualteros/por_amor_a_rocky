@@ -94,6 +94,7 @@ class AdoptionsController extends Controller
             $adoption->empresaTrabaja=$request->empresaTrabaja;
             $adoption->sueldo=$request->sueldo;
             $adoption->zonaVivienda=$request->zonaVivienda;
+            $adoption->estado="pendiente";
             $adoption->save();
             return redirect('/solicitarAdopcion');
         }
@@ -120,7 +121,10 @@ class AdoptionsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $adoption=Adoption::find($id);
+        $adoption->estado="aprobado";
+        $adoption->save();
+        return redirect('/solicitarAdopcion');
     }
 
     /**
