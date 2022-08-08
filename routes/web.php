@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdoptionsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PetController;
+use App\Http\Controllers\QuotesController;
+use App\Models\Adoption;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes

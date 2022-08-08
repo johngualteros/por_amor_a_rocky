@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('empresaTrabaja',45);
             $table->string('sueldo',45);
             $table->string('zonaVivienda',45);
+            $table->string('estado',45);
             $table->timestamps();
         });
     }

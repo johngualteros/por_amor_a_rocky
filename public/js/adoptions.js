@@ -14,7 +14,7 @@ function alertConfirm() {
         }
     });
 }
-function aprobeAlert() {
+function aprobeAlert(id) {
     Swal.fire({
         title: "Estas seguro de aprobar la alerta",
         text: "No podras revertir esta acción",
@@ -23,21 +23,18 @@ function aprobeAlert() {
         confirmButtonColor: "#2774CE",
         cancelButtonColor: "#7B96F8",
         confirmButtonText: "Si, estoy seguro!",
-    })
-        .then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire(
-                    "Completado",
-                    "La adopcion fue aprobada satisfactoriamente",
-                    "success"
-                );
-            }
-        })
-        .then(
-            setTimeout(() => {
-                window.location.reload();
-            }, 3000)
-        );
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                "Completado",
+                "La adopcion fue aprobada satisfactoriamente",
+                "success"
+            ).then((response) => {
+                console.log(id);
+                window.location.href = `/solicitarAdopcion/${id}/edit`;
+            });
+        }
+    });
 }
 function declineAlert() {
     Swal.fire({

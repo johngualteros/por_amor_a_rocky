@@ -275,53 +275,52 @@ input {
     border-radius: 50%;
     margin: 0 10px;
 }
+/* Estilos listar adopciones */
 .content-list-adoptions {
     grid-area: content;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-.content-list-adoption {
-    background-color: var(--color-white-slow) ;
-    grid-area: content;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
 }
 .container-requests-adoption{
-    background-color:var(--color-white-slow);
-    border-radius: 20px;
-    padding: 3%;
-    width: 80%;
-    height: 85%;
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: auto;
-    place-items: center;
-}
-.container-adoption{
-    display: grid;
-    grid-template-columns: 80% auto;
-    grid-template-rows: auto;
     width: 100%;
+    height: auto;
+    min-width: 80vw;
+    background-color: var(--color-white-slow);
+    border-radius: 10px;
     padding: 10px;
-    background-color: var(--color-white-fast);
-    border-radius: 10px;
-}
-.approve-button,.decline-button,.view-button{
-    width: 100%;
-    height: 30px;
-    border: none;
-    color: #222;
-    font-size: 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    margin: 5px 0;
 }
 .container-section-adoption{
-    text-align:left;
+    text-align: center;
+    background-color: var(--color-white-fast);
+}
+
+.approve-button,.decline-button,.view-button{
+    height: auto;
+    border: none;
+    color: #222;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+.dataTable-sorter{
+    text-align: center;
+}
+/* Estilos datatables vanilla */
+.dataTable-input , .dataTable-selector{
+    width: auto;
+    border: none;
+    padding: 7px 20px;
+    font-size: 16px;
+    outline: none;
+    border-radius: 5px;
+    color: var(--secondary-color);
+    box-shadow: none;
+    background-color: var(--color-white-fast);
 }
 .approve-button{
     background-color: var(--color-button-approve);
