@@ -41,10 +41,10 @@ class PetController extends Controller
             "edad" => 'required|numeric',
             "foto" => 'required',
             "user" => 'required|numeric',
-            "desc" => 'required|min:5|max:45',
-            "est" => 'required|min:5|max:45',
+            "desc" => 'required',
+            "est" => 'required',
             "raza" => 'required|alpha',
-            "zona" => 'required|alpha',
+            "zona" => 'required',
 
 
         ];
@@ -53,8 +53,6 @@ class PetController extends Controller
         [
             "required" => "Este campo es oligatorio",
             "alpha" => "El campo solo acepta caracteres alfabeticos",
-            "min" => "El campo debe tener mas de 10 caracteres",
-            "max" => "El campo no debe superar los 30 caracteres",
             "image" => "El archivo debe ser una imagen",
             "numeric" => "El campo solo acepta caracteres numericos"
 
@@ -86,7 +84,7 @@ class PetController extends Controller
             $pet->estadoPeludo=$request->est;
 
             $pet->save();
-            //redireccionar al formulario con mensaje de registro Exitoso
+
             return redirect('pets/form');
         }
     }

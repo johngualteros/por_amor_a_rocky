@@ -3,10 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdoptionsController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\PetController;
 use App\Http\Controllers\QuotesController;
+use App\Http\Controllers\PetController;
 use App\Models\Adoption;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -29,11 +28,11 @@ Route::post('login',[UserController::class,'login'])->name('login');
 // Route::get('/solicitarAdopcion',function(){
 //     return view('adoptions.form');
 // });
-Route::get('formpet', function () {
-    return view('pets.form');
-});
 Route::get('formulario', function () {
     return view('users.formRegister');
+});
+Route::get('formpet', function () {
+    return view('pets.form');
 });
 Route::resource('pet', PetController::class);
 Route::resource('solicitarAdopcion', AdoptionsController::class);
