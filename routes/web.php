@@ -34,6 +34,7 @@ Route::get('formulario', function () {
 Route::get('formpet', function () {
     return view('pets.form');
 });
+
 Route::resource('pet', PetController::class);
 Route::resource('solicitarAdopcion', AdoptionsController::class);
 Route::resource('solicitarCita', QuotesController::class);

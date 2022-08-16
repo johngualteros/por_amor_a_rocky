@@ -39,7 +39,7 @@ class PetController extends Controller
         $reglas = [
             "nombre" => 'required|alpha',
             "edad" => 'required|numeric',
-            "foto" => 'required',
+            "foto" => 'required|image',
             "user" => 'required|numeric',
             "desc" => 'required',
             "est" => 'required',
