@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdoptionsController;
+use App\Http\Controllers\MyvaccineController;
+use App\Http\Controllers\VaccineController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\QuotesController;
 use App\Http\Controllers\PetController;
@@ -35,6 +37,17 @@ Route::get('formpet', function () {
     return view('pets.form');
 });
 
+Route::get('formmyvac', function () {
+    return view('myvaccines.form');
+});
+
+Route::get('formvac', function () {
+    return view('vaccines.form');
+});
+
+
+Route::resource('vaccine', VaccineController::class);
+Route::resource('myvaccine', MyvaccineController::class);
 Route::resource('pet', PetController::class);
 Route::resource('solicitarAdopcion', AdoptionsController::class);
 Route::resource('solicitarCita', QuotesController::class);

@@ -15,7 +15,9 @@ class PetController extends Controller
      */
     public function index()
     {
-        //
+        $pets= Pet::all();
+        return view('pets.list',compact('pets'));
+
     }
 
     /**
@@ -25,7 +27,7 @@ class PetController extends Controller
      */
     public function create()
     {
-        return view('pets.form');
+
     }
 
     /**
@@ -85,7 +87,7 @@ class PetController extends Controller
 
             $pet->save();
 
-            return redirect('pets/form');
+            return redirect('pet');
         }
     }
 
@@ -97,7 +99,7 @@ class PetController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
@@ -108,7 +110,8 @@ class PetController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pets=Pet::findorFail($id);
+        return view('pets.edit', compact('pets'));
     }
 
     /**
@@ -120,7 +123,18 @@ class PetController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $pets=Pet::findorFail($id);
+        $pets->nombrePeludo=$request->nombre;
+        $pets->edad=$request->edad;
+        $pets->user_id=$request->user;
+        $pets->descripcionSalud=$request->desc;
+        $pets->raza=$request->raza;
+        $pets->zonaVivienda=$request->zona;
+        $pets->estadoPeludo=$request->est;
+        $pets->save();
+        return redirect('pet');
+        
     }
 
     /**
