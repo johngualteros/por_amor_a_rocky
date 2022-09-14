@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Pet;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -27,6 +28,10 @@ class PetController extends Controller
      */
     public function create()
     {
+        $users = User::all();
+
+        return view('pets.form')
+        ->with('users' , $users);
 
     }
 
@@ -124,6 +129,39 @@ class PetController extends Controller
     public function update(Request $request, $id)
     {
 
+        $reglas = [
+            "nombre" => 'required|alpha',
+            "edad" => 'required|numeric',
+            "foto" => 'required|image',
+            "user" => 'required|numeric',
+            "desc" => 'required',
+            "est" => 'required',
+            "raza" => 'required|alpha',
+            "zona" => 'required',
+
+
+        ];
+
+        $mensajes=
+        [
+            "required" => "Este campo es oligatorio",
+            "alpha" => "El campo solo acepta caracteres alfabeticos",
+            "image" => "El archivo debe ser una imagen",
+            "numeric" => "El campo solo acepta caracteres numericos"
+
+
+        ];
+
+
+        //Objeto Validador    
+        $v = Validator::make($request->all(), $reglas, $mensajes);
+
+        //Validar
+        if ($v->fails()){
+            return redirect('pet/'. $id .'/edit')
+            ->withErrors($v);
+        }
+        else{
         $pets=Pet::findorFail($id);
         $pets->nombrePeludo=$request->nombre;
         $pets->edad=$request->edad;
@@ -134,6 +172,7 @@ class PetController extends Controller
         $pets->estadoPeludo=$request->est;
         $pets->save();
         return redirect('pet');
+        }
         
     }
 

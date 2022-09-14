@@ -103,11 +103,36 @@ class VaccineController extends Controller
     public function update(Request $request, $id)
     {
 
+        $reglas = [
+            "nombre" => 'required|alpha',
+
+
+        ];
+
+        $mensajes=
+        [
+            "required" => "Este campo es oligatorio",
+            "alpha" => "El campo solo acepta caracteres alfabeticos"
+
+
+        ];
+
+
+        //Objeto Validador    
+        $v = Validator::make($request->all(), $reglas, $mensajes);
+
+        //Validar
+        if ($v->fails()){
+            return redirect('vaccine/'. $id .'/edit')
+            ->withErrors($v);
+        }
+        else{
         $vacs=vaccine::findorFail($id);
         $vacs->nombreVacuna=$request->nombre;
 
         $vacs->save();
         return redirect('vaccine');
+        }
         
     }
 

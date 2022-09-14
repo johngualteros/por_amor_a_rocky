@@ -1,5 +1,6 @@
 @extends('layouts.base')
 @section('content')
+<main class="content-form">
     <h2 class="teal-text ">Formulario Registro Peludo</h2> 
     <form action="{{ route('pet.store') }}" method="POST" class="form" enctype="multipart/form-data"  >
             @csrf
@@ -9,8 +10,18 @@
             <label for="edad">edad: <span class="text-red">*<p>{{$errors->first('edad') }}</p></span></label>
             <input type="number" name="edad">
 
-            <label for="user">user id: <span class="text-red">*<p>{{$errors->first('user') }}</p></span></label>
-            <input type="number" name="user">
+            <label for="user">Usuario que Registra: <span class="text-red">* <p>{{$errors->first('user') }}</p> </span></label>
+            <select name="user" id="user">
+                <option value="" >Seleccione el usuario</option>
+                    @foreach($users as $user)
+                    <option value=" {{ $user->id }} ">
+                        {{ $user->nombre }} {{ $user->apellido }}
+                    </option>
+                    @endforeach
+                </select>
+
+
+
 
             <label for="desc">Descripcion Salud: <span class="text-red">*<p>{{$errors->first('desc') }}</p></span></label>
             <input type="longtext" name="desc">
@@ -35,4 +46,5 @@
             
             </div>
         </form>
+</main>
 @endsection

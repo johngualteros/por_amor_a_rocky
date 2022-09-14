@@ -1,5 +1,6 @@
 @extends('layouts.base')
 @section('content')
+<main class="content-form">
     <h2 class="teal-text ">Formulario Registro Mi Vacuna</h2> 
     <form action="{{ route('vaccine.store') }}" method="POST" class="form" enctype="multipart/form-data"  >
             @csrf
@@ -13,4 +14,5 @@
             
             </div>
         </form>
+</main>
 @endsection

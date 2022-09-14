@@ -30,16 +30,9 @@ Route::post('login',[UserController::class,'login'])->name('login');
 // Route::get('/solicitarAdopcion',function(){
 //     return view('adoptions.form');
 // });
-Route::get('formulario', function () {
-    return view('users.formRegister');
-});
-Route::get('formpet', function () {
-    return view('pets.form');
-});
+Route::get('formpet', [PetController::class, 'create']);
 
-Route::get('formmyvac', function () {
-    return view('myvaccines.form');
-});
+Route::get('formmyvac', [MyvaccineController::class, 'create']);
 
 Route::get('formvac', function () {
     return view('vaccines.form');

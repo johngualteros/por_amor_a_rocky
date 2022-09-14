@@ -1,5 +1,6 @@
 @extends('layouts.base')
 @section('content')
+<main class="content-form">
     <h2 class="teal-text ">Formulario Actualizacion Peludo</h2> 
     <form action="{{ route('vaccine.update', $vacs->id) }}" method="POST" class="form" enctype="multipart/form-data"  >
             @csrf
@@ -14,9 +15,10 @@
             <div class="button">
 
                     <button type="submit" class="ov-btn-slide-right" >
-                      Actualizar Peludo
+                      Actualizar Vacuna
                     </button>
             
             </div>
         </form>
+</main>
 @endsection

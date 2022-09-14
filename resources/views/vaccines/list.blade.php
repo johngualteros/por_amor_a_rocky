@@ -1,7 +1,8 @@
 @extends('layouts.base')
 @section('content')
-
+<main class="content-form">
 <table class="table table-hover table-bordered" id="datat">
+<button><a href="{{route('vaccine.create')}}">Registrar Vacuna</a></button>
     <thead>
         <tr>
             <th>Id Vacuna</th>
@@ -19,4 +20,5 @@
         @endforeach
     </tbody>
 </table>
+</main>
 @endsection

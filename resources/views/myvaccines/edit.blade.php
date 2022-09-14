@@ -1,5 +1,6 @@
 @extends('layouts.base')
 @section('content')
+<main class="content-form">
     <h2 class="teal-text ">Formulario Actualizacion Peludo</h2> 
     <form action="{{ route('myvaccine.update', $myvacs->id) }}" method="POST" class="form" enctype="multipart/form-data"  >
             @csrf
@@ -13,16 +14,13 @@
             <label for="vaccine">Id Vacuna: <span class="text-red">*<p>{{$errors->first('vaccine') }}</p></span></label>
             <input type="number" name="vaccine" value="{{$myvacs->vaccines_id}}">
 
-
-            
-
-
             <div class="button">
 
                     <button type="submit" class="ov-btn-slide-right" >
-                      Actualizar Peludo
+                      Actualizar Mi vacuna
                     </button>
             
             </div>
         </form>
+</main>
 @endsection

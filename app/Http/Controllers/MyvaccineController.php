@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Myvaccine;
+use App\Models\Pet;
+use App\Models\Vaccine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,7 +19,9 @@ class MyvaccineController extends Controller
     {
    
         $myvacs= Myvaccine::all();
-        return view('myvaccines.list',compact('myvacs'));
+
+        return view('myvaccines.list')
+        ->with('myvacs', $myvacs);
 
     }
 
@@ -27,26 +31,28 @@ class MyvaccineController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    { 
+        $pets = Pet::all();
+        $vacs = Vaccine::all();
 
+        return view('myvaccines.form')
+        ->with('pets' , $pets)
+        ->with('vacs' , $vacs);
     }
 
     public function store(Request $request)
 {
         $reglas = [
             "fecha" => 'required',
-            "pet" => 'required|numeric',
-            "vaccine" => 'required|numeric',
+            "pet" => 'required',
+            "vaccine" => 'required',
 
 
         ];
 
         $mensajes=
         [
-            "required" => "Este campo es oligatorio",
-            "numeric" => "El campo solo acepta caracteres numericos"
-
-
+            "required" => "Este campo es oligatorio"
         ];
 
 
@@ -91,7 +97,8 @@ class MyvaccineController extends Controller
     public function edit($id)
     {
         $myvacs=Myvaccine::findorFail($id);
-        return view('myvaccines.edit', compact('myvacs'));
+        return view('myvaccines.edit')
+        ->with('myvacs' , $myvacs);
     }
 
     /**
@@ -104,13 +111,39 @@ class MyvaccineController extends Controller
     public function update(Request $request, $id)
     {
 
-        $myvacs=Myvaccine::findorFail($id);
-        $myvacs->fechaVacuna=$request->fecha;
-        $myvacs->pets_id=$request->pet;
-        $myvacs->vaccines_id=$request->vaccine;
+        $reglas = [
+            "fecha" => 'required',
+            "pet" => 'required',
+            "vaccine" => 'required',
 
-        $myvacs->save();
-        return redirect('myvaccine');
+
+        ];
+
+        $mensajes=
+        [
+            "required" => "Este campo es oligatorio"
+        ];
+
+
+        //Objeto Validador    
+        $v = Validator::make($request->all(), $reglas, $mensajes);
+
+        //Validar
+        if ($v->fails()){
+            return redirect('myvaccine/'. $id .'/edit')
+            ->withErrors($v);
+        }
+        else{
+            $myvacs=Myvaccine::findorFail($id);
+            $myvacs->fechaVacuna=$request->fecha;
+            $myvacs->pets_id=$request->pet;
+            $myvacs->vaccines_id=$request->vaccine;
+    
+            $myvacs->save();
+            return redirect('myvaccine');
+
+           
+        }
         
     }
 
